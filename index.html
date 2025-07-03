@@ -1,64 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Uber Ride</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Uber Booking</title>
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
-  <!-- Font Awesome -->
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <!-- Fonts and Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <style>
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      font-family: 'Poppins', sans-serif;
-      background: #000;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      color: white;
-      animation: fadeIn 1s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .login-container {
-      background: #111;
-      padding: 30px 40px;
-      border-radius: 10px;
-      text-align: center;
-      width: 320px;
-      box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .login-container:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 24px rgba(255, 255, 255, 0.2);
+      font-family: 'Inter', sans-serif;
+      background-color: #000;
+      color: #fff;
+      padding: 0 1rem;
     }
 
     h1 {
-      margin-bottom: 25px;
-      font-weight: 600;
-      letter-spacing: 1.5px;
+      text-align: center;
+      background-color: #111;
+      padding: 1.5rem 1rem;
+      font-size: 2.4rem;
+      letter-spacing: 1px;
+      margin-bottom: 2rem;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: auto;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .booking-box {
+      background: #111;
+      border: 1px solid #333;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
+      width: 100%;
+      max-width: 400px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .booking-box:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 28px rgba(255, 255, 255, 0.2);
+    }
+
+    .booking-box img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      object-fit: cover;
+      height: 180px;
+      filter: grayscale(100%);
+    }
+
+    .title {
+      text-align: center;
       font-size: 1.5rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: 600;
+      color: #ccc;
+      font-size: 0.95rem;
     }
 
     .input-group {
       position: relative;
-      margin-bottom: 20px;
     }
 
     .input-group i {
@@ -69,136 +95,186 @@
       color: #aaa;
     }
 
-    .input-group input {
+    .input-group input,
+    .input-group select {
       width: 100%;
-      padding: 10px 36px 10px 36px;
-      border-radius: 5px;
-      border: 1px solid #333;
+      padding: 0.75rem 0.75rem 0.75rem 2.5rem;
+      margin-top: 0.5rem;
+      border: 1px solid #555;
+      border-radius: 8px;
       font-size: 1rem;
-      background: #222;
-      color: white;
-      transition: all 0.3s ease;
+      background-color: #fff;
+      color: #000;
     }
 
-    .input-group input:focus {
+    .input-group input:focus,
+    .input-group select:focus {
+      border-color: #fff;
       outline: none;
-      border-color: white;
-      background: #333;
     }
 
-    .toggle-password {
-      position: absolute;
-      top: 50%;
-      right: 12px;
-      transform: translateY(-50%);
-      cursor: pointer;
-      color: #aaa;
-    }
-
-    button {
-      width: 100%;
-      padding: 12px;
-      background: white;
+    input[type="submit"],
+    .submit-btn {
+      margin-top: 1.5rem;
+      background-color: #fff;
+      color: #000;
+      font-weight: bold;
+      padding: 0.75rem 1.5rem;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
       font-size: 1rem;
       cursor: pointer;
-      color: black;
-      font-weight: bold;
-      transition: background 0.3s ease, transform 0.2s ease;
+      transition: background-color 0.3s ease, transform 0.2s ease;
     }
 
-    button:hover {
-      background: #ddd;
-      transform: scale(1.03);
+    input[type="submit"]:hover,
+    .submit-btn:hover {
+      background-color: #000;
+      color: #fff;
+      border: 1px solid #fff;
+      transform: translateY(-2px);
     }
 
-    .error-msg {
-      background: #ff4e4e;
-      color: white;
-      padding: 10px;
-      border-radius: 5px;
-      margin-top: 15px;
-      display: none;
-      animation: shake 0.4s ease;
-    }
-
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      20%, 60% { transform: translateX(-10px); }
-      40%, 80% { transform: translateX(10px); }
-    }
-
-    @media (max-width: 400px) {
-      .login-container {
-        width: 90%;
-        padding: 20px;
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
       }
 
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
       h1 {
-        font-size: 1.2rem;
+        font-size: 2rem;
+        padding: 1rem;
       }
 
-      input, button {
+      .booking-box {
+        padding: 1.5rem;
+        max-width: 90%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .title {
+        font-size: 1.3rem;
+      }
+
+      input,
+      select {
         font-size: 0.95rem;
+        padding: 0.65rem 0.65rem 0.65rem 2.2rem;
       }
     }
   </style>
 </head>
+
 <body>
-  <div class="login-container">
-    <h1>Uber Ride</h1>
-    <form id="loginForm">
-      <div class="input-group">
-        <i class="fas fa-user"></i>
-        <input type="text" placeholder="Username" id="username" required />
-      </div>
+  <h1>Uber Booking</h1>
+  <div class="container">
 
-      <div class="input-group">
-        <i class="fas fa-lock"></i>
-        <input type="password" placeholder="Password" id="password" required />
-        <i class="fas fa-eye toggle-password" id="togglePassword"></i>
-      </div>
+    <!-- Car Booking -->
+    <div class="booking-box">
+      <div class="title">Car Booking</div>
+      <img src="car.jpg" alt="Car Image" />
+      <form onsubmit="return validateForm(this)">
+        <label for="car-city">Select City:</label>
+        <div class="input-group">
+          <i class="fas fa-city"></i>
+          <select id="car-city" required>
+            <option value="">— Select City —</option>
+            <option value="Aurangabad">Aurangabad</option>
+            <option value="Hyderabad">Hyderabad</option>
+            <option value="Mumbai">Mumbai</option>
+          </select>
+        </div>
 
-      <button type="submit">Login</button>
-      <div id="error" class="error-msg">Invalid username or password.</div>
-    </form>
+        <label for="car-name">Your Name:</label>
+        <div class="input-group">
+          <i class="fas fa-user"></i>
+          <input type="text" id="car-name" placeholder="Enter your name" required />
+        </div>
+
+        <label for="car-pickup">Pickup Location:</label>
+        <div class="input-group">
+          <i class="fas fa-location-dot"></i>
+          <input type="text" id="car-pickup" placeholder="Enter pickup location" required />
+        </div>
+
+        <label for="car-drop">Drop Location:</label>
+        <div class="input-group">
+          <i class="fas fa-location-arrow"></i>
+          <input type="text" id="car-drop" placeholder="Enter drop location" required />
+        </div>
+
+        <input type="submit" class="submit-btn" value="Book Car" />
+      </form>
+    </div>
+
+    <!-- Bike Booking -->
+    <div class="booking-box">
+      <div class="title">Bike Booking</div>
+      <img src="bike.jpg" alt="Bike Image" />
+      <form onsubmit="return validateForm(this)">
+        <label for="bike-city">Select City:</label>
+        <div class="input-group">
+          <i class="fas fa-city"></i>
+          <select id="bike-city" required>
+            <option value="">— Select City —</option>
+            <option value="Aurangabad">Aurangabad</option>
+            <option value="Hyderabad">Hyderabad</option>
+            <option value="Mumbai">Mumbai</option>
+          </select>
+        </div>
+
+        <label for="bike-name">Your Name:</label>
+        <div class="input-group">
+          <i class="fas fa-user"></i>
+          <input type="text" id="bike-name" placeholder="Enter your name" required />
+        </div>
+
+        <label for="bike-pickup">Pickup Location:</label>
+        <div class="input-group">
+          <i class="fas fa-location-dot"></i>
+          <input type="text" id="bike-pickup" placeholder="Enter pickup location" required />
+        </div>
+
+        <label for="bike-drop">Drop Location:</label>
+        <div class="input-group">
+          <i class="fas fa-location-arrow"></i>
+          <input type="text" id="bike-drop" placeholder="Enter drop location" required />
+        </div>
+
+        <input type="submit" class="submit-btn" value="Book Bike" />
+      </form>
+    </div>
   </div>
 
+  <!-- JavaScript for form validation -->
   <script>
-    // Toggle password visibility
-    const togglePassword = document.getElementById("togglePassword");
-    const passwordInput = document.getElementById("password");
-
-    togglePassword.addEventListener("click", () => {
-      const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
-      passwordInput.setAttribute("type", type);
-      togglePassword.classList.toggle("fa-eye");
-      togglePassword.classList.toggle("fa-eye-slash");
-    });
-
-    // Dummy login validation
-    const form = document.getElementById('loginForm');
-    const errorBox = document.getElementById('error');
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      const username = document.getElementById('username').value.trim();
-      const password = document.getElementById('password').value.trim();
-
-      if (username !== 'admin' || password !== '1234') {
-        errorBox.style.display = 'block';
-        errorBox.style.animation = 'shake 0.4s ease';
-        setTimeout(() => {
-          errorBox.style.animation = '';
-        }, 400);
-      } else {
-        errorBox.style.display = 'none';
-        alert('Login successful!');
-        // window.location.href = 'bike-login.html';
+    function validateForm(form) {
+      const inputs = form.querySelectorAll("input, select");
+      for (let input of inputs) {
+        input.classList.remove("error-shake");
+        if (!input.value) {
+          input.classList.add("error-shake");
+          input.focus();
+          return false;
+        }
       }
-    });
+      alert("Booking successful!");
+      return true;
+    }
   </script>
 </body>
+
 </html>
