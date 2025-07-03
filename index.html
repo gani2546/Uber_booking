@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Uber Booking</title>
+  <title>Uber Booking — Black & White</title>
 
-  <!-- Font Awesome -->
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <!-- Fonts and Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <style>
     * {
@@ -16,18 +18,19 @@
     }
 
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #fff;
-      color: #000;
+      font-family: 'Inter', sans-serif;
+      background-color: #000;
+      color: #fff;
+      padding: 0 1rem;
     }
 
-    header {
-      background: #000;
-      color: #fff;
-      padding: 1.5rem 0;
+    h1 {
       text-align: center;
-      font-size: 1.8rem;
+      background-color: #111;
+      padding: 1.5rem 1rem;
+      font-size: 2.4rem;
       letter-spacing: 1px;
+      margin-bottom: 2rem;
     }
 
     .container {
@@ -35,197 +38,243 @@
       justify-content: center;
       flex-wrap: wrap;
       gap: 2rem;
-      padding: 3rem 1rem;
+      max-width: 1200px;
+      margin: auto;
+      animation: fadeIn 1s ease-in-out;
     }
 
     .booking-box {
-      background: #fff;
-      border: 1.5px solid #000;
+      background: #111;
+      border: 1px solid #333;
       border-radius: 16px;
-      width: 360px;
+      box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
+      width: 100%;
+      max-width: 400px;
       padding: 2rem;
-      box-shadow: 4px 6px 0 #000;
-      transition: all 0.3s ease-in-out;
+      transition: all 0.3s ease;
     }
 
     .booking-box:hover {
-      box-shadow: none;
-      transform: translate(2px, 2px);
+      transform: translateY(-6px);
+      box-shadow: 0 12px 28px rgba(255, 255, 255, 0.2);
     }
 
-    .icon {
-      font-size: 3rem;
-      margin-bottom: 0.5rem;
-      color: #000;
+    .booking-box img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      object-fit: cover;
+      height: 180px;
+      filter: grayscale(100%);
     }
 
-    .booking-box h2 {
-      font-size: 1.4rem;
-      margin-bottom: 1.2rem;
+    .title {
+      text-align: center;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
       font-weight: 600;
     }
 
-    .booking-box input,
-    .booking-box select,
-    .booking-box button {
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: 600;
+      color: #ccc;
+      font-size: 0.95rem;
+    }
+
+    .input-group {
+      position: relative;
+    }
+
+    .input-group i {
+      position: absolute;
+      top: 50%;
+      left: 12px;
+      transform: translateY(-50%);
+      color: #aaa;
+    }
+
+    .input-group input,
+    .input-group select {
       width: 100%;
-      padding: 0.8rem;
-      margin: 0.6rem 0;
+      padding: 0.75rem 0.75rem 0.75rem 2.5rem;
+      margin-top: 0.5rem;
+      border: 1px solid #555;
+      border-radius: 8px;
       font-size: 1rem;
-      border: 1px solid #000;
-      border-radius: 8px;
-      background: #fff;
+      background-color: #fff;
       color: #000;
-      transition: all 0.2s ease-in-out;
     }
 
-    .booking-box input:focus,
-    .booking-box select:focus {
+    .input-group input:focus,
+    .input-group select:focus {
+      border-color: #fff;
       outline: none;
-      border-color: #333;
-      background: #f9f9f9;
     }
 
-    .booking-box button {
-      background: #000;
-      color: #fff;
+    input[type="submit"],
+    .submit-btn {
+      margin-top: 1.5rem;
+      background-color: #fff;
+      color: #000;
       font-weight: bold;
+      padding: 0.75rem 1.5rem;
       border: none;
-      cursor: pointer;
-    }
-
-    .booking-box button:hover {
-      background: #333;
-    }
-
-    /* Toast Notification */
-    .toast {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #000;
-      color: #fff;
-      padding: 1rem 1.5rem;
       border-radius: 8px;
-      box-shadow: 0 5px 10px rgba(0,0,0,0.3);
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.4s ease, transform 0.4s ease;
-      z-index: 999;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
     }
 
-    .toast.show {
-      opacity: 1;
-      transform: translateY(0);
+    input[type="submit"]:hover,
+    .submit-btn:hover {
+      background-color: #000;
+      color: #fff;
+      border: 1px solid #fff;
+      transform: translateY(-2px);
     }
 
-    /* Spinner Overlay */
-    .spinner-overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.6);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
 
-    .spinner {
-      border: 6px solid #fff;
-      border-top: 6px solid #000;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+        padding: 1rem;
+      }
+
+      .booking-box {
+        padding: 1.5rem;
+        max-width: 90%;
+      }
+    }
+
+    @media (max-width: 480px) {
       .container {
         flex-direction: column;
         align-items: center;
-        padding: 2rem 1rem;
+      }
+
+      .title {
+        font-size: 1.3rem;
+      }
+
+      input,
+      select {
+        font-size: 0.95rem;
+        padding: 0.65rem 0.65rem 0.65rem 2.2rem;
       }
     }
   </style>
 </head>
+
 <body>
-
-  <header>
-    Uber Booking
-  </header>
-
+  <h1>Uber Booking — Black & White</h1>
   <div class="container">
 
     <!-- Car Booking -->
-    <form class="booking-box" onsubmit="handleBooking(event, 'Car')">
-      <div class="icon"><i class="fas fa-car"></i></div>
-      <h2>Book a Car</h2>
-      <input type="text" placeholder="Pickup Location" required />
-      <input type="text" placeholder="Drop Location" required />
-      <input type="date" required />
-      <input type="time" required />
-      <select required>
-        <option value="">Choose Car Type</option>
-        <option>Mini</option>
-        <option>Sedan</option>
-        <option>SUV</option>
-      </select>
-      <button type="submit">Book Car</button>
-    </form>
+    <div class="booking-box">
+      <div class="title">Car Booking</div>
+      <img src="car.jpg" alt="Car Image" />
+      <form onsubmit="return validateForm(this)">
+        <label for="car-city">Select City:</label>
+        <div class="input-group">
+          <i class="fas fa-city"></i>
+          <select id="car-city" required>
+            <option value="">— Select City —</option>
+            <option value="Aurangabad">Aurangabad</option>
+            <option value="Hyderabad">Hyderabad</option>
+            <option value="Mumbai">Mumbai</option>
+          </select>
+        </div>
+
+        <label for="car-name">Your Name:</label>
+        <div class="input-group">
+          <i class="fas fa-user"></i>
+          <input type="text" id="car-name" placeholder="Enter your name" required />
+        </div>
+
+        <label for="car-pickup">Pickup Location:</label>
+        <div class="input-group">
+          <i class="fas fa-location-dot"></i>
+          <input type="text" id="car-pickup" placeholder="Enter pickup location" required />
+        </div>
+
+        <label for="car-drop">Drop Location:</label>
+        <div class="input-group">
+          <i class="fas fa-location-arrow"></i>
+          <input type="text" id="car-drop" placeholder="Enter drop location" required />
+        </div>
+
+        <input type="submit" class="submit-btn" value="Book Car" />
+      </form>
+    </div>
 
     <!-- Bike Booking -->
-    <form class="booking-box" onsubmit="handleBooking(event, 'Bike')">
-      <div class="icon"><i class="fas fa-motorcycle"></i></div>
-      <h2>Book a Bike</h2>
-      <input type="text" placeholder="Pickup Location" required />
-      <input type="text" placeholder="Drop Location" required />
-      <input type="date" required />
-      <input type="time" required />
-      <select required>
-        <option value="">Choose Bike Type</option>
-        <option>Standard</option>
-        <option>Scooter</option>
-        <option>Electric</option>
-      </select>
-      <button type="submit">Book Bike</button>
-    </form>
+    <div class="booking-box">
+      <div class="title">Bike Booking</div>
+      <img src="bike.jpg" alt="Bike Image" />
+      <form onsubmit="return validateForm(this)">
+        <label for="bike-city">Select City:</label>
+        <div class="input-group">
+          <i class="fas fa-city"></i>
+          <select id="bike-city" required>
+            <option value="">— Select City —</option>
+            <option value="Aurangabad">Aurangabad</option>
+            <option value="Hyderabad">Hyderabad</option>
+            <option value="Mumbai">Mumbai</option>
+          </select>
+        </div>
 
+        <label for="bike-name">Your Name:</label>
+        <div class="input-group">
+          <i class="fas fa-user"></i>
+          <input type="text" id="bike-name" placeholder="Enter your name" required />
+        </div>
+
+        <label for="bike-pickup">Pickup Location:</label>
+        <div class="input-group">
+          <i class="fas fa-location-dot"></i>
+          <input type="text" id="bike-pickup" placeholder="Enter pickup location" required />
+        </div>
+
+        <label for="bike-drop">Drop Location:</label>
+        <div class="input-group">
+          <i class="fas fa-location-arrow"></i>
+          <input type="text" id="bike-drop" placeholder="Enter drop location" required />
+        </div>
+
+        <input type="submit" class="submit-btn" value="Book Bike" />
+      </form>
+    </div>
   </div>
 
-  <!-- Toast -->
-  <div id="toast" class="toast"></div>
-
-  <!-- Spinner -->
-  <div id="spinner" class="spinner-overlay">
-    <div class="spinner"></div>
-  </div>
-
+  <!-- JavaScript for form validation -->
   <script>
-    function handleBooking(event, type) {
-      event.preventDefault();
-
-      const spinner = document.getElementById('spinner');
-      spinner.style.display = 'flex';
-
-      setTimeout(() => {
-        spinner.style.display = 'none';
-
-        const toast = document.getElementById('toast');
-        toast.textContent = `${type} booking confirmed!`;
-        toast.classList.add('show');
-
-        setTimeout(() => {
-          toast.classList.remove('show');
-        }, 3000);
-      }, 2000);
+    function validateForm(form) {
+      const inputs = form.querySelectorAll("input, select");
+      for (let input of inputs) {
+        input.classList.remove("error-shake");
+        if (!input.value) {
+          input.classList.add("error-shake");
+          input.focus();
+          return false;
+        }
+      }
+      alert("Booking successful!");
+      return true;
     }
   </script>
-
 </body>
+
 </html>
